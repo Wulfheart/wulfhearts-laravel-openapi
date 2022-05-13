@@ -18,8 +18,6 @@ class OpenAPIServiceProvider extends PackageServiceProvider
         $package
             ->name('openapi')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_openapi_table')
             ->hasCommand(OpenAPICommand::class);
     }
 }
