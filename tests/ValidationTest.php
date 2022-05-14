@@ -4,7 +4,7 @@ use cebe\openapi\Reader;
 use Wulfheart\OpenAPI\Validation\ValidationMessage;
 use Wulfheart\OpenAPI\Validation\ValidationMessageLevel;
 use Wulfheart\OpenAPI\Validation\ValidationObject;
-use Wulfheart\OpenAPI\Validation\Validators\ControllerValidation;
+use Wulfheart\OpenAPI\Validation\Validators\UniqueOperationIdValidation;
 
 it('can test', function () {
 
@@ -13,8 +13,7 @@ it('can test', function () {
 
     expect($validated->containsErrors())->toBeTrue();
 
-    $controllerValidationErrorCount = collect($validated->messages)->filter(fn(ValidationMessage $m) => $m->level === ValidationMessageLevel::Error && $m->origin === ControllerValidation::class)->count();
+    $uniqueOperationIdValidationErrorCount = collect($validated->messages)->filter(fn(ValidationMessage $m) => $m->level === ValidationMessageLevel::Error && $m->origin === UniqueOperationIdValidation::class)->count();
 
-    expect($controllerValidationErrorCount)->toBe(2);
-
+    expect($uniqueOperationIdValidationErrorCount)->toBe(1);
 });

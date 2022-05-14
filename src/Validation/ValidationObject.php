@@ -14,7 +14,6 @@ class ValidationObject
 
     /** @var array<\Wulfheart\OpenAPI\Validation\IValidationPipe> $pipes */
     public array $pipes = [
-        ControllerValidation::class,
         UniqueOperationIdValidation::class
     ];
 
@@ -32,6 +31,9 @@ class ValidationObject
             ->thenReturn();
     }
 
+    public function addMessage(ValidationMessage $m): void {
+        $this->messages[] = $m;
+    }
 
     public function containsErrors(): bool {
         return collect($this->messages)
